@@ -1,30 +1,30 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export class Modal extends Component {
-  currentClick = event => {
+export const Modal = ({ handleOnClick, largeImageURL }) => {
+  const currentClick = event => {
     if (event.target === event.currentTarget) {
-      this.props.handleOnClick();
+      handleOnClick();
     }
   };
-  componentDidMount() {
+
+  useEffect(() => {
     document.addEventListener('keypress', event => {
       if (event.code === 'Backquote') {
-        console.log(event);
-        this.props.handleOnClick();
+        handleOnClick();
       }
     });
-  }
-  render() {
-    return (
-      <div onClick={this.currentClick} className="Overlay">
-        <div className="Modal">
-          <img src={this.props.largeImageURL} alt="" />
-        </div>
+  });
+
+  return (
+    <div onClick={currentClick} className="Overlay">
+      <div className="Modal">
+        <img src={largeImageURL} alt="" />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
 Modal.propTypes = {
   handleOnClick: PropTypes.func.isRequired,
   largeImageURL: PropTypes.string.isRequired,
