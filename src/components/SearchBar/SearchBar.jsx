@@ -23,8 +23,8 @@ export const SearchBar = ({ onSubmit }) => {
         <input
           className={css.input}
           type="text"
-          autocomplete="off"
-          autofocus
+          autoComplete="off"
+          autoFocus
           value={query}
           placeholder="Search images and photos"
           onChange={handleChange}
